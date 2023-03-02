@@ -1,6 +1,6 @@
 // self-referential structure                       
 struct Node {                                      
-   int data; // each listNode contains a number 
+   int id; // each listNode contains a number 
    Node *nextPtr; // pointer to next node
 }; // end structure listNode                        
 typedef struct Node LLnode; // synonym for struct listNode
@@ -33,14 +33,14 @@ void insert( LLPtr &sPtr, int value )
    newPtr =new LLnode; // create node
 
    if ( newPtr != NULL ) { // is space available
-      newPtr->data = value; // place value in node
+      newPtr->id = value; // place value in node
       newPtr->nextPtr = NULL; // node does not link to another node
 
       previousPtr = NULL;
       currentPtr = sPtr;
 
       // loop to find the correct location in the list       
-      while ( currentPtr != NULL && value > currentPtr->data ) {
+      while ( currentPtr != NULL && value > currentPtr->id ) {
          previousPtr = currentPtr; // walk to ...               
          currentPtr = currentPtr->nextPtr; // ... next node 
       } // end while                                         
@@ -68,7 +68,7 @@ int deletes( LLPtr &sPtr, int value )
    LLPtr tempPtr; // temporary node pointer
 
    // delete first node
-   if ( value == sPtr->data ) { 
+   if ( value == sPtr->id ) { 
       tempPtr = sPtr; // hold onto node being removed
       sPtr = sPtr->nextPtr; // de-thread the node
       free( tempPtr ); // free the de-threaded node
@@ -79,7 +79,7 @@ int deletes( LLPtr &sPtr, int value )
       currentPtr = sPtr->nextPtr;
 
       // loop to find the correct location in the list
-      while ( currentPtr != NULL && currentPtr->data != value ) { 
+      while ( currentPtr != NULL && currentPtr->id != value ) { 
          previousPtr = currentPtr; // walk to ...  
          currentPtr = currentPtr->nextPtr; // ... next node  
       } // end while
@@ -114,7 +114,7 @@ void printList( LLPtr currentPtr )
 
       // while not the end of the list
       while ( currentPtr != NULL ) { 
-         cout<< currentPtr->data ;
+         cout<< currentPtr->id ;
          currentPtr = currentPtr->nextPtr;   
       } // end while
 
